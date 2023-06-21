@@ -47,5 +47,8 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Use the bullet gem to detect and diagnose database-related performance issues
+  gem 'bullet'
 end
 
