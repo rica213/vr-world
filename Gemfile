@@ -52,6 +52,6 @@ group :development do
   gem 'bullet'
 end
 
+gem 'cancancan'
 gem 'devise'
 gem 'devise-jwt'
-gem 'cancancan'
