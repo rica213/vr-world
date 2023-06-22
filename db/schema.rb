@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_095255) do
     t.string "location"
     t.string "working_hours"
     t.string "image_url"
-    t.integer "rating"
+    t.integer "rating", default: 1
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

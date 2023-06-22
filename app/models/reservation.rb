@@ -1,6 +1,6 @@
 class Reservation < ApplicationRecord
-    belongs_to :user
-    belongs_to :studio
+  belongs_to :user
+  belongs_to :studio
 
-    validates :date, :location, presence: true
+  validates :date, :location, presence: true
 end
