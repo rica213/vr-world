@@ -1,6 +1,6 @@
 class Studio < ApplicationRecord
   belongs_to :user
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
 
   validates :name, :description, :location, :working_hours, :image_url, presence: true
   validates :price, numericality: { greater_than: 0 }
