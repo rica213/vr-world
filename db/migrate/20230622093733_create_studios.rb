@@ -8,7 +8,7 @@ class CreateStudios < ActiveRecord::Migration[7.0]
       t.string :location
       t.string :working_hours
       t.string :image_url
-      t.integer :rating
+      t.integer :rating, default: 1
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
