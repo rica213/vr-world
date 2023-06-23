@@ -30,3 +30,4 @@
 
 # Ignore database.yml 
 /config/database.yml
+/config/credentials.yml.enc
