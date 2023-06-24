@@ -31,4 +31,14 @@ RSpec.describe Reservation, type: :model do
       expect(@reservation).to be_valid
     end
   end
+  describe 'associations' do
+    it 'belongs to user' do
+      reservation = Reservation.reflect_on_association(:user)
+      expect(reservation.macro).to eq(:belongs_to)
+    end
+    it 'belongs to studio' do
+      reservation = Reservation.reflect_on_association(:studio)
+      expect(reservation.macro).to eq(:belongs_to)
+    end
+  end
 end
