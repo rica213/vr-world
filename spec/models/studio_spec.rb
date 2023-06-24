@@ -55,5 +55,8 @@ RSpec.describe Studio, type: :model do
         expect(@studio).to_not be_valid
     end
 
-
+    it 'should not create a studio if image_url is nil' do
+        @studio.image_url = nil
+        expect(@studio).to_not be_valid
+    end
 end
