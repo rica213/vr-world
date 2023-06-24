@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
     it 'validates the uniqueness of a username' do
       user_one = User.new(username: 'Tao', email: 'zuigbi@ro.lk', password: '123456789')
       user_one.save
-      user_two = User.new(username: 'Tao', email:'iko@uman.lt', password: '123456789')
+      user_two = User.new(username: 'Tao', email: 'iko@uman.lt', password: '123456789')
       expect(user_two.valid?).to be false
     end
   end
