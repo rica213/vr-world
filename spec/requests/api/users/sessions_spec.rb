@@ -12,7 +12,7 @@ RSpec.describe 'Users::Sessions', type: :request do
           email: { type: :string, example: 'user@example.com' },
           password: { type: :string, example: 'password' }
         },
-        required: ['email', 'password']
+        required: %w[email password]
       }
 
       response '200', 'Signed in successfully' do
@@ -34,22 +34,21 @@ RSpec.describe 'Users::Sessions', type: :request do
                          updated_at: { type: :string, format: 'date-time' },
                          jti: { type: :string }
                        },
-                       required: ['id', 'username', 'email', 'admin']
+                       required: %w[id username email admin]
                      }
                    },
-                   required: ['code', 'message', 'data']
+                   required: %w[code message data]
                  }
                },
                required: ['status']
 
         let(:user) { User.create!(username: 'Phill', email: 'phill@example.com', password: 'password', admin: true) }
 
-
         before do
-          sign_in user 
+          sign_in user
         end
         run_test!
-      end   
+      end
     end
   end
 
@@ -73,7 +72,7 @@ RSpec.describe 'Users::Sessions', type: :request do
   #              },
   #              required: ['status', 'message']
 
-               
+
   #              # before do
   #       #   token_payload = { sub: user.id, jti: SecureRandom.uuid } # Include the jti in the JWT payload
   #       #   user.jti = JWT.encode(token_payload, Rails.application.credentials.fetch(:secret_key_base))
@@ -88,12 +87,12 @@ RSpec.describe 'Users::Sessions', type: :request do
   #       #   user.save!
   #       #   sign_in user
   #       # end
-        
+
   #       # gentoken = JWT.encode({ sub: user.id }, Rails.application.credentials.fetch(:secret_key_base))
 
   #       # let(:Authorization) { "Bearer #{gentoken}" }
 
-        
+
   #     before do
   #       let(:user) { User.create!(username: 'Mike', email: 'mike@example.com', password: 'password', admin: true) }
   #       token_payload = { sub: user.id, jti: SecureRandom.uuid }
@@ -102,7 +101,7 @@ RSpec.describe 'Users::Sessions', type: :request do
   #     end
 
   #     let(:Authorization) { "Bearer #{user.jti}" }
-        
+
 
   #       run_test! do |response|
   #         sign_out user
@@ -114,42 +113,41 @@ RSpec.describe 'Users::Sessions', type: :request do
   #   end
   # end
 
-
-  # TODO please fix signout spec
+  # TODO: please fix signout spec
 
   path '/users/sign_out' do
-      delete 'User sign out' do
-        tags 'Users'
-        produces 'application/json'
-        parameter name: 'Authorization', in: :header, type: :string, description: 'Bearer token', required: true
-  
-# COME BACK  TO THIS LATER ..................................................................................
-        # response '200', 'Signed out successfully' do
-        #   schema type: :object,
-        #          properties: {
-        #            status: {
-        #              type: :integer,
-        #              example: 200
-        #            },
-        #            message: {
-        #              type: :string,
-        #              example: 'Signed out successfully!'
-        #            }
-        #          },
-        #          required: ['status', 'message']
-  
-        #   let(:user) { User.create!(username: 'Mike', email: 'mike@example.com', password: 'password', admin: true) }
-  
-        #   before do
-        #     sign_in user
-        #   end
-  
-        #   let(:Authorization) { "Bearer #{JWT.encode({ sub: user.id }, Rails.application.credentials.fetch(:secret_key_base))}" }
-         
-        #   run_test!
-        
-        # end
-      end
-    end
-end
+    delete 'User sign out' do
+      tags 'Users'
+      produces 'application/json'
+      parameter name: 'Authorization', in: :header, type: :string, description: 'Bearer token', required: true
 
+      # COME BACK  TO THIS LATER ..................................................................................
+      # response '200', 'Signed out successfully' do
+      #   schema type: :object,
+      #          properties: {
+      #            status: {
+      #              type: :integer,
+      #              example: 200
+      #            },
+      #            message: {
+      #              type: :string,
+      #              example: 'Signed out successfully!'
+      #            }
+      #          },
+      #          required: ['status', 'message']
+
+      #   let(:user) { User.create!(username: 'Mike', email: 'mike@example.com', password: 'password', admin: true) }
+
+      #   before do
+      #     sign_in user
+      #   end
+
+      #   let(:Authorization) { "Bearer #{JWT.encode({ sub: user.id },
+      #   Rails.application.credentials.fetch(:secret_key_base))}" }
+
+      #   run_test!
+
+      # end
+    end
+  end
+end

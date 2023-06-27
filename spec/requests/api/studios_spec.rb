@@ -20,9 +20,10 @@ RSpec.describe 'Api::V1::StudiosController', type: :request do
                    image_url: { type: :string },
                    contact: { type: :string },
                    created_at: { type: :string },
-                   updated_at: { type: :string },
+                   updated_at: { type: :string }
                  },
-                 required: ['id', 'name', 'description', 'price', 'duration', 'location', 'working_hours', 'image_url', 'contact', 'created_at', 'updated_at']
+                 required: %w[id name description price duration location working_hours image_url
+                              contact created_at updated_at]
                }
 
         run_test!
@@ -44,12 +45,12 @@ RSpec.describe 'Api::V1::StudiosController', type: :request do
           working_hours: { type: :string, example: '9am-6pm' },
           image_url: { type: :string, example: 'image1.jpg' },
           contact: { type: :string, example: 'Contact 1' },
-          rating: {type: :integer,example: 1},
-          user_id: {type: :integer,example: 400},
+          rating: { type: :integer, example: 1 },
+          user_id: { type: :integer, example: 400 },
           created_at: { type: :string },
           updated_at: { type: :string }
         },
-        required: ['name', 'description', 'price', 'duration', 'location', 'working_hours', 'image_url', 'contact']
+        required: %w[name description price duration location working_hours image_url contact]
       }
 
       response '201', 'Studio created successfully' do
@@ -67,14 +68,18 @@ RSpec.describe 'Api::V1::StudiosController', type: :request do
                  created_at: { type: :string },
                  updated_at: { type: :string }
                },
-               required: ['id', 'name', 'description', 'price', 'duration', 'location', 'working_hours', 'image_url', 'contact', 'created_at', 'updated_at']
+               required: %w[id name description price duration location working_hours image_url
+                            contact created_at updated_at]
 
-               let(:user) { User.create!(username: 'Mike', email: 'mike@example.com', password: 'password', admin: true) }
-               let(:studio) { { name: 'Studio 1', description: 'Description 1', price: 100, duration: 60, location: 'Location 1', working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1' } }
+        let(:user) do
+          User.create!(username: 'Mike', email: 'mike@example.com', password: 'password', admin: true)
+        end
+        let(:studio) do
+          { name: 'Studio 1', description: 'Description 1', price: 100, duration: 60, location: 'Location 1',
+            working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1' }
+        end
 
         before do
-
-
           sign_in user
         end
 
@@ -88,8 +93,13 @@ RSpec.describe 'Api::V1::StudiosController', type: :request do
                },
                required: ['error']
 
-        let(:user) { User.create!(username: 'James', email: 'james@example.com', password: 'password123', admin: false) }
-        let(:studio) { { name: 'Studio 1', description: 'Description 1', price: 10.0, duration: 60, location: 'Location 1', working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1' } }
+        let(:user) do
+          User.create!(username: 'James', email: 'james@example.com', password: 'password123', admin: false)
+        end
+        let(:studio) do
+          { name: 'Studio 1', description: 'Description 1', price: 10.0, duration: 60, location: 'Location 1',
+            working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1' }
+        end
 
         before do
           sign_in user
@@ -118,22 +128,26 @@ RSpec.describe 'Api::V1::StudiosController', type: :request do
                  working_hours: { type: :string },
                  image_url: { type: :string },
                  contact: { type: :string },
-                 rating: {type: :integer,example: 1},
-                 user_id: {type: :integer,example: 400},
+                 rating: { type: :integer, example: 1 },
+                 user_id: { type: :integer, example: 400 },
                  created_at: { type: :string },
                  updated_at: { type: :string }
                },
-               required: ['id', 'name', 'description', 'price', 'duration', 'location', 'working_hours', 'image_url', 'contact', 'created_at', 'updated_at']
-               
-            let(:user) { User.create!(username: 'Mike', email: 'mike@example.com', password: 'password', admin: true) }
+               required: %w[id name description price duration location working_hours image_url
+                            contact created_at updated_at]
 
-            let(:studio) { Studio.create!(name: 'Studio 1', description: 'Description 1', price: 10.0, duration: 60, location: 'Location 1', working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1', user: user) }
+        let(:user) { User.create!(username: 'Mike', email: 'mike@example.com', password: 'password', admin: true) }
 
-            let(:id) {studio.id }
+        let(:studio) do
+          Studio.create!(name: 'Studio 1', description: 'Description 1', price: 10.0, duration: 60, location: 'Location 1',
+                         working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1', user:)
+        end
 
-            before do
-                sign_in user
-            end
+        let(:id) { studio.id }
+
+        before do
+          sign_in user
+        end
 
         run_test!
       end
@@ -142,7 +156,7 @@ RSpec.describe 'Api::V1::StudiosController', type: :request do
 end
 
 RSpec.describe 'Api::V1::StudiosController', type: :request do
-    path '/api/v1/studios/{id}' do
+  path '/api/v1/studios/{id}' do
     delete 'Delete a studio' do
       tags 'Studios'
       produces 'application/json'
@@ -150,10 +164,13 @@ RSpec.describe 'Api::V1::StudiosController', type: :request do
 
       response '204', 'Studio deleted successfully' do
         let(:user) { User.create!(username: 'Jude', email: 'jude@example.com', password: 'password', admin: true) }
-        
-        let(:studio) { Studio.create!(name: 'Studio 1', description: 'Description 1', price: 10.0, duration: 60, location: 'Location 1', working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1', user: user) }
 
-        let(:id) {studio.id }
+        let(:studio) do
+          Studio.create!(name: 'Studio 1', description: 'Description 1', price: 10.0, duration: 60, location: 'Location 1',
+                         working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1', user:)
+        end
+
+        let(:id) { studio.id }
 
         before do
           sign_in user
@@ -169,19 +186,24 @@ RSpec.describe 'Api::V1::StudiosController', type: :request do
                },
                required: ['error']
 
-               let(:user) { User.create!(username: 'Sam', email: 'sam@example.com', password: 'password', admin: false) }
-        
-               let(:studio) { Studio.create!(name: 'Studio 1', description: 'Description 1', price: 10.0, duration: 60, location: 'Location 1', working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1', user: user) }
-       
-               let(:id) {studio.id }
+        let(:user) do
+          User.create!(username: 'Sam', email: 'sam@example.com', password: 'password', admin: false)
+        end
 
-               before do
-                user_to_sign_in = User.create!(username: 'Alice', email: 'alice@example.com', password: 'password')
-                sign_in user_to_sign_in
-              end
+        let(:studio) do
+          Studio.create!(name: 'Studio 1', description: 'Description 1', price: 10.0, duration: 60, location: 'Location 1',
+                         working_hours: '9am-6pm', image_url: 'image1.jpg', contact: 'Contact 1', user:)
+        end
 
-              run_test!
+        let(:id) { studio.id }
+
+        before do
+          user_to_sign_in = User.create!(username: 'Alice', email: 'alice@example.com', password: 'password')
+          sign_in user_to_sign_in
+        end
+
+        run_test!
       end
     end
-   end
+  end
 end
