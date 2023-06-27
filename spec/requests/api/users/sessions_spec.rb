@@ -72,7 +72,6 @@ RSpec.describe 'Users::Sessions', type: :request do
   #              },
   #              required: ['status', 'message']
 
-
   #              # before do
   #       #   token_payload = { sub: user.id, jti: SecureRandom.uuid } # Include the jti in the JWT payload
   #       #   user.jti = JWT.encode(token_payload, Rails.application.credentials.fetch(:secret_key_base))
@@ -92,7 +91,6 @@ RSpec.describe 'Users::Sessions', type: :request do
 
   #       # let(:Authorization) { "Bearer #{gentoken}" }
 
-
   #     before do
   #       let(:user) { User.create!(username: 'Mike', email: 'mike@example.com', password: 'password', admin: true) }
   #       token_payload = { sub: user.id, jti: SecureRandom.uuid }
@@ -101,7 +99,6 @@ RSpec.describe 'Users::Sessions', type: :request do
   #     end
 
   #     let(:Authorization) { "Bearer #{user.jti}" }
-
 
   #       run_test! do |response|
   #         sign_out user
