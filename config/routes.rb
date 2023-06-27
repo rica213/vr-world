@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :studios, only: [:index, :show, :create, :destroy] do
-        resources :reservations, only: [:index, :create, :destroy]
+        resources :reservations, only: [:create, :destroy]
       end
+      resources :reservations, only: [:index]
     end
   end
 

@@ -1,7 +1,7 @@
 class Api::V1::ReservationsController < ApplicationController
   before_action :authenticate_user!
 
-  # GET /api/v1/studios/:studio_id/reservations
+  # GET /api/v1/reservations
   def index
     @reservations = if current_user.admin?
                       Reservation.all
