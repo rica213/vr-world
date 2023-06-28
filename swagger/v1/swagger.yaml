@@ -1,0 +1,445 @@
+---
+openapi: 3.0.1
+info:
+  title: VR WORLD API DOCUMENTATION (Version 1)
+  version: v1
+paths:
+  "/api/v1/reservations":
+    get:
+      summary: Retrieve reservations
+      tags:
+      - Reservations
+      parameters:
+      - name: studio_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Reservations retrieved successfully
+        '401':
+          description: Unauthorized - User is not signed in
+    post:
+      summary: Create a reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: studio_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Reservation created successfully
+        '401':
+          description: Unauthorized - User is not signed in
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reservation_date:
+                  type: string
+                location:
+                  type: string
+              required:
+              - reservation_date
+              - location
+  "/api/v1/studios/{studio_id}/reservations/{id}":
+    delete:
+      summary: Delete a reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: studio_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Reservation deleted successfully
+        '401':
+          description: Unauthorized - User is not authorized to delete this reservation
+  "/api/v1/studios":
+    get:
+      summary: Retrieve all studios
+      tags:
+      - Studios
+      responses:
+        '200':
+          description: Studios retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    price:
+                      type: number
+                    duration:
+                      type: integer
+                    location:
+                      type: string
+                    working_hours:
+                      type: string
+                    image_url:
+                      type: string
+                    contact:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                  required:
+                  - id
+                  - name
+                  - description
+                  - price
+                  - duration
+                  - location
+                  - working_hours
+                  - image_url
+                  - contact
+                  - created_at
+                  - updated_at
+    post:
+      summary: Create a studio
+      tags:
+      - Studios
+      parameters: []
+      responses:
+        '201':
+          description: Studio created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: decimal
+                  duration:
+                    type: integer
+                  location:
+                    type: string
+                  working_hours:
+                    type: string
+                  image_url:
+                    type: string
+                  contact:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - name
+                - description
+                - price
+                - duration
+                - location
+                - working_hours
+                - image_url
+                - contact
+                - created_at
+                - updated_at
+        '401':
+          description: Unauthorized - User is not authorized to create a studio
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Studio 1
+                description:
+                  type: string
+                  example: Description 1
+                price:
+                  type: number
+                  example: 10.0
+                duration:
+                  type: integer
+                  example: 60
+                location:
+                  type: string
+                  example: Location 1
+                working_hours:
+                  type: string
+                  example: 9am-6pm
+                image_url:
+                  type: string
+                  example: image1.jpg
+                contact:
+                  type: string
+                  example: Contact 1
+                rating:
+                  type: integer
+                  example: 1
+                user_id:
+                  type: integer
+                  example: 400
+                created_at:
+                  type: string
+                updated_at:
+                  type: string
+              required:
+              - name
+              - description
+              - price
+              - duration
+              - location
+              - working_hours
+              - image_url
+              - contact
+  "/api/v1/studios/{id}":
+    get:
+      summary: Retrieve a specific studio
+      tags:
+      - Studios
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Studio retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: decimal
+                  duration:
+                    type: integer
+                  location:
+                    type: string
+                  working_hours:
+                    type: string
+                  image_url:
+                    type: string
+                  contact:
+                    type: string
+                  rating:
+                    type: integer
+                    example: 1
+                  user_id:
+                    type: integer
+                    example: 400
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - name
+                - description
+                - price
+                - duration
+                - location
+                - working_hours
+                - image_url
+                - contact
+                - created_at
+                - updated_at
+    delete:
+      summary: Delete a studio
+      tags:
+      - Studios
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Studio deleted successfully
+        '401':
+          description: Unauthorized - User is not authorized to delete a studio
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+  "/users":
+    post:
+      summary: Creates a new user
+      tags:
+      - User Registrations
+      parameters: []
+      responses:
+        '200':
+          description: User created successfully
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - username
+              - email
+              - password
+  "/users/sign_in":
+    post:
+      summary: User sign in
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: Signed in successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: Signed in successfully!
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          username:
+                            type: string
+                          email:
+                            type: string
+                          admin:
+                            type: boolean
+                          created_at:
+                            type: string
+                            format: date-time
+                          updated_at:
+                            type: string
+                            format: date-time
+                          jti:
+                            type: string
+                        required:
+                        - id
+                        - username
+                        - email
+                        - admin
+                    required:
+                    - code
+                    - message
+                    - data
+                required:
+                - status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: user@example.com
+                password:
+                  type: string
+                  example: password
+              required:
+              - email
+              - password
+  "/users/sign_out":
+      delete:
+        summary: User sign out
+        tags:
+        - Users
+        responses:
+          '200':
+            description: Signed out successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    status:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 200
+                        message:
+                          type: string
+                          example: Signed out successfully!
+                      required:
+                      - code
+                      - message
+                  required:
+                  - status
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Authorization:
+                    type: string
+                    description: Bearer token
+                required:
+                - Authorization
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
