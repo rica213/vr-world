@@ -5,12 +5,13 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     rergistration: 'users/registrations'
   }
-
+  
   namespace :api do
     namespace :v1 do
       resources :studios, only: [:index, :show, :create, :destroy] do
-        resources :reservations, only: [:index, :create, :destroy]
+        resources :reservations, only: [:create, :destroy]
       end
+      resources :reservations, only: [:index]
     end
   end
   root to: redirect('/api-docs')

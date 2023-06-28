@@ -4,7 +4,7 @@ info:
   title: VR WORLD API DOCUMENTATION (Version 1)
   version: v1
 paths:
-  "/api/v1/studios/{studio_id}/reservations":
+  "/api/v1/reservations":
     get:
       summary: Retrieve reservations
       tags:
