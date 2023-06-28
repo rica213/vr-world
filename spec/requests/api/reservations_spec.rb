@@ -29,16 +29,8 @@ RSpec.describe 'Api::V1::ReservationsController', type: :request do
           sign_in user
         end
 
-        run_test! do |response|
-          #   data = JSON.parse(response.body)
-          #   expect(data.length).to eq(2)
-          puts user.id
-          puts studio.user_id
-          puts studio.id
-          puts reservation1.studio_id
-          puts reservation2.location
-          puts response.body
-        end
+        run_test!
+
       end
 
       response '401', 'Unauthorized - User is not signed in' do

@@ -314,8 +314,8 @@ paths:
       - User Registrations
       parameters: []
       responses:
-        '422':
-          description: User creation failed
+        '200':
+          description: User created successfully
       requestBody:
         content:
           application/json:

@@ -15,12 +15,8 @@ RSpec.describe 'User API', type: :request do
         required: %w[username email password]
       }
 
-      # Remember to check with group and change this code to 200
+  
       response '422', 'User created successfully' do
-        # let(:user) { User.new(username: 'Miky', email: 'miky@example.com', password: 'password1', admin: true) }
-        # before do
-        # post '/users', params: { user: user }
-        # end
         let(:user) { nil }
         let(:user_params) do
           {
@@ -29,8 +25,6 @@ RSpec.describe 'User API', type: :request do
             password: 'password'
           }
         end
-
-        # run_test!
 
         run_test! do
           post '/users', params: { user: user_params }
