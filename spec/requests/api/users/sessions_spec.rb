@@ -51,7 +51,7 @@ RSpec.describe 'Users::Sessions', type: :request do
       end
     end
   end
-  
+
   # TODO: please fix signout spec
 
   path '/users/sign_out' do

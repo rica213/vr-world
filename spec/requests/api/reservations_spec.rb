@@ -30,7 +30,6 @@ RSpec.describe 'Api::V1::ReservationsController', type: :request do
         end
 
         run_test!
-
       end
 
       response '401', 'Unauthorized - User is not signed in' do

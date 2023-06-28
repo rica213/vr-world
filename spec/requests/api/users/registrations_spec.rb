@@ -15,7 +15,7 @@ RSpec.describe 'User API', type: :request do
         required: %w[username email password]
       }
 
-  
+
       response '422', 'User created successfully' do
         let(:user) { nil }
         let(:user_params) do
