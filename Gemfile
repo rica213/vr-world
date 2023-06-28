@@ -54,8 +54,13 @@ group :development do
   gem 'bullet'
 end
 
+# Use cancancan gem for authorization
 # gem 'cancancan'
+
+# Use the devise gem for authentication
 gem 'devise'
+
+# Use the devise-jwt gem for authentication
 gem 'devise-jwt'
 gem 'rswag'
 gem 'rswag-api'
