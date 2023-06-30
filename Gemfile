@@ -35,6 +35,8 @@ gem 'bootsnap', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
+gem 'sprockets-rails'
+
 
 # Use the rubocop gem to check the code style and format the code
 gem 'rubocop', '>= 1.0', '< 2.0'
