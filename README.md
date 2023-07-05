@@ -10,19 +10,26 @@
 
 - [📗 Table of Contents](#-table-of-contents)
 - [🪮 VR-WORLD API ](#-vr-world-api-)
+    - [_Unlocking Virtual Reality Experiences with Ease!_](#unlocking-virtual-reality-experiences-with-ease)
 - [🛠 Built With ](#-built-with-)
   - [📌 Tech Stack ](#-tech-stack-)
 - [🗝 Key Features ](#-key-features-)
 - [📑 Documentation ](#-documentation-)
+    - [You can learn more about our API on this 👉 Live documentation](#you-can-learn-more-about-our-api-on-this--live-documentation)
 - [💻 Getting Started ](#-getting-started-)
-  - [↣Prerequisites](#prerequisites)
-  - [↣Setup](#setup)
-  - [↣Usage](#usage)
-  - [↣Run tests](#run-tests)
-- [👥 Authors ](#-authors-)
+  - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
+  - [Usage](#usage)
+  - [Run tests](#run-tests)
+- [🧑🏽‍💻 Authors ](#-authors-)
 - [🔭 Future Features ](#-future-features-)
 - [🤝 Contributing ](#-contributing-)
 - [⭐️ Show your support ](#️-show-your-support-)
+    - [Show Your Support for VR-WORLD API!](#show-your-support-for-vr-world-api)
+      - [🗣️ Spread the Word: Share your VR-WORLD experience with friends, family, and colleagues.](#️-spread-the-word-share-your-vr-world-experience-with-friends-family-and-colleagues)
+      - [📲 Engage on Social Media: Follow us on our social media channels and actively engage with our posts.](#-engage-on-social-media-follow-us-on-our-social-media-channels-and-actively-engage-with-our-posts)
+      - [✍🏻 Provide Feedback: We value your input and want to continuously enhance the VR-WORLD experience.](#-provide-feedback-we-value-your-input-and-want-to-continuously-enhance-the-vr-world-experience)
+      - [⭐️⭐️⭐️⭐️ Star the repository: Star is our currency 💸](#️️️️-star-the-repository-star-is-our-currency-)
 - [🙏 Acknowledgments ](#-acknowledgments-)
 - [📝 License ](#-license-)
 
@@ -96,8 +103,6 @@ Run this command to install **Rails**
 
 Clone this repository to your desired folder:
 
-Example commands:
-
 ```sh
   cd my-folder
   git clone git@github.com:rica213/vr-world.git
@@ -109,7 +114,23 @@ To install dependencies, run:
 bundle install
 ```
 
+A **secret_key_base** is required to run the Devise
+
+Run this command in the bash terminal to generate it:
+
+```sh
+EDITOR="mate --wait" bin/rails credentials:edit
+```
+
 **Set up the database** <br>
+
+A _database.yml_ file is required to use database
+
+Here are the steps to be followed to create one
+
+1- Copy the file **database_sample.yml** located in the directory **_vr-world/config_** <br>
+2- Rename your copy of **database_sample.yml** into **database.yml** <br>
+3- Make necessary configuration following the instructions provided in the file according to your database configuration
 
 To create the database, run:
 
