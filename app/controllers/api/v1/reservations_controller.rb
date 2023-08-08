@@ -1,7 +1,7 @@
 class Api::V1::ReservationsController < ApplicationController
   before_action :authenticate_user!
 
-  # GET /api/v1/studios/:studio_id/reservations
+  # GET /api/v1/reservations
   def index
     @reservations = if current_user.admin?
                       Reservation.all
@@ -28,6 +28,7 @@ class Api::V1::ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     if current_user.id.eql?(@reservation.user_id) || current_user.admin?
       @reservation.destroy
+
       render json: @reservation
     else
       render json: { error: 'You are not authorized to delete this reservation' }, status: :unauthorized
