@@ -39,6 +39,20 @@ class Api::V1::StudiosController < ApplicationController
     end
   end
 
+  def update
+    @studio = Studio.find(params[:id])
+
+    if current_user.admin? || current_user.id.eql?(@studio.user_id)
+      if @studio.update(studio_params)
+        render json: @studio
+      else
+        render json: @studio.errors, status: :unprocessable_entity
+      end
+    else
+      render json: { error: 'You are not authorized to update a studio' }, status: :unauthorized
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
